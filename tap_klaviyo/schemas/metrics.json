@@ -60,7 +60,8 @@
                             "description": "The category of the integration",
                             "type": [
                                 "string",
-                                "null"
+                                "null",
+                                "object"
                             ]
                         }
                     },
