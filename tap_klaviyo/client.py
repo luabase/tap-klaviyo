@@ -46,6 +46,7 @@ class KlaviyoStream(RESTStream):
 
     url_base = "https://a.klaviyo.com/api"
     records_jsonpath = "$[data][*]"
+    max_page_size: int | None = None
 
     @property
     def authenticator(self) -> APIKeyAuthenticator:
@@ -92,7 +93,7 @@ class KlaviyoStream(RESTStream):
             if self.get_starting_timestamp(context):
                 filter_timestamp = self.get_starting_timestamp(context)
             elif self.config.get("start_date"):
-                filter_timestamp = _isodate_from_date_string(self.config("start_date"))
+                filter_timestamp = _isodate_from_date_string(self.config.get("start_date"))
             else:
                 filter_timestamp = DEFAULT_START_DATE
 
@@ -101,4 +102,6 @@ class KlaviyoStream(RESTStream):
 
             params["filter"] = f"greater-than({self.replication_key},{filter_timestamp})"
 
+        if self.max_page_size:
+            params["page[size]"] = self.max_page_size
         return params
