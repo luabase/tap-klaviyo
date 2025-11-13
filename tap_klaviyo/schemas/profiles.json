@@ -19,6 +19,19 @@
                 "null"
             ]
         },
+        "relationships": {
+            "description": "",
+            "type": [
+                "null",
+                "object"
+            ]
+        },
+        "links": {
+            "description": "",
+            "type": [
+                "object"
+            ]
+        },
         "attributes": {
             "properties": {
                 "email": {
@@ -167,6 +180,13 @@
                                 "string",
                                 "null"
                             ]
+                        },
+                        "ip": {
+                            "description": "IP address",
+                            "type": [
+                                "null",
+                                "string"
+                            ]
                         }
                     },
                     "type": [
@@ -180,6 +200,7 @@
                         "^.*$": {
                           "anyOf": [
                             {"type": "object"},
+                            {"type": "array"},
                             {"type": "string"},
                             {"type": "number"},
                             {"type": "boolean"},
@@ -188,7 +209,11 @@
                           ]
                         }
                       },
-                    "additionalProperties": false
+                    "additionalProperties": false,
+                    "type": [
+                        "object",
+                        "null"
+                    ]
                 },
                 "subscriptions": {
                     "properties": {
