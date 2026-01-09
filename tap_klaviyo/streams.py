@@ -79,7 +79,7 @@ class CampaignsStream(KlaviyoStream):
 
     @property
     def is_sorted(self) -> bool:
-        return True
+        return False
 
 
 class ProfilesStream(KlaviyoStream):
@@ -171,7 +171,7 @@ class FlowsStream(KlaviyoStream):
     primary_keys = ["id"]
     replication_key = "updated"
     schema_filepath = SCHEMAS_DIR / "flows.json"
-    is_sorted = True
+    is_sorted = False
 
     def post_process(
         self,
